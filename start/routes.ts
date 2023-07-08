@@ -19,7 +19,30 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+/*
+SIZE ROUTES
+*/
+Route.group(() => {
+    Route.get('/', 'SizesController.index')
+    Route.post('/posts', 'SizesController.store')
+    // Route.get('/:id', 'SizesController.show')
+    // Route.put('/:id', 'SizesController.update')
+    // Route.delete('/:id', 'SizesController.destroy')
+}
+).prefix('/size')
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+/*
+CATEGORY ROUTES
+*/
+Route.group(() => {
+    Route.get('/', 'CategoriesController.index')
+    Route.post('/posts', 'CategoriesController.store')
+}
+).prefix('/category')
+
+/*
+OTHER ROUTES
+*/
+Route.get('*', async ({ response }) => {
+  response.notFound({error: 'This route does not exist'})
+ })

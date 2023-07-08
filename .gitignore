@@ -5,6 +5,8 @@ coverage
 .DS_STORE
 .env
 tmp
+database
+start
 
 .env.example
 .env.test
