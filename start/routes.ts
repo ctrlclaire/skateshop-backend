@@ -41,6 +41,15 @@ Route.group(() => {
 ).prefix('/category')
 
 /*
+PRODUCT ROUTES
+*/
+Route.group(() => {
+    Route.get('/', 'ProductsController.index')
+    Route.post('/posts', 'ProductsController.store')
+    Route.get('/:slug', 'ProductsController.show').where('slug', /^[a-z0-9_-]+$/)
+}).prefix('/product')
+
+/*
 OTHER ROUTES
 */
 Route.get('*', async ({ response }) => {
