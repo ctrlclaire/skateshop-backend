@@ -23,7 +23,8 @@ export default class Product extends BaseModel {
   @column()
   @slugify({
     strategy: 'dbIncrement',
-    fields: ['name']
+    fields: ['name'],
+    allowUpdates: true,
   })
   public slug: string
 

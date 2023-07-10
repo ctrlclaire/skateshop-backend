@@ -47,6 +47,8 @@ Route.group(() => {
     Route.get('/', 'ProductsController.index')
     Route.post('/posts', 'ProductsController.store')
     Route.get('/:slug', 'ProductsController.show').where('slug', /^[a-z0-9_-]+$/)
+    Route.put('/update/:id', 'ProductsController.update')
+    Route.delete('/delete/:id', 'ProductsController.destroy')
 }).prefix('/product')
 
 /*

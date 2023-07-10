@@ -35,25 +35,26 @@ export default class ProductsController {
     return response.ok(product)
   }
 
-//   public async update({ params, response, request }: HttpContextContract) {
-//     const payload = await request.validate({
-//       schema: schema.create({
-//         name: schema.string(),
-//         description: schema.string(),
-//         price: schema.number(),
-//         image: schema.string(),
-//         size_id: schema.number(),
-//         category_id: schema.number(),
-//       }),
-//     })
-//     const updateProduct = await Product.findOrFail(params.id)
-//     await updateProduct.merge(payload).save()
-//     return response.send(updateProduct)
-//   }
+  public async update({ params, response, request }: HttpContextContract) {
+    const updateProductSchema = schema.create({
+        name: schema.string(),
+        description: schema.string(),
+        price: schema.number(),
+        image: schema.string(),
+        size_id: schema.number(),
+        category_id: schema.number(),
+        // slug: schema.string(),
+      })
+      const payload = await request.validate({ schema: updateProductSchema
+    })
+    const updateProduct = await Product.findOrFail(params.id)
+    await updateProduct.merge(payload).save()
+    return response.send(updateProduct)
+  }
 
-//   public async destroy({ params, response }: HttpContextContract) {
-//     const deleteProduct = await Product.findOrFail(params.id)
-//     await deleteProduct.delete()
-//     return response.send(deleteProduct)
-//   }
+  public async destroy({ params, response }: HttpContextContract) {
+    const deleteProduct = await Product.findOrFail(params.id)
+    await deleteProduct.delete()
+    return response.send(`${deleteProduct.name} has been deleted`)
+  }
 }
